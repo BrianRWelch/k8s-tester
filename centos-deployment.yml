@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: centos-deployment
+  labels:
+    app: centos-tester
+spec:
+  template:
+    metadata:
+      name: centos-pod
+      labels:
+        app: centos
+    spec:
+      containers:
+        - name: centos-container
+          image: centos
+          command:
+            - "sleep"
+          args:
+            - "1000"
+  replicas: 2
+  selector:
+    matchLabels:
+      app: centos
